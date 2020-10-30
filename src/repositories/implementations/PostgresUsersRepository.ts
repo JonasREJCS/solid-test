@@ -1,10 +1,13 @@
 import { User } from "../../entities/User";
+import { ISearchUserRequestDTO } from "../../modules/user/dto/SearchUserDTO";
 import { IUsersRepository } from "../IUsersRepository.ts";
 
 export class PostgresUsersRepository implements IUsersRepository {
   private users: User[] = [];
   
-  async findByName(name: string, limit: number, skip: number): Promise<User[]> {
+  async findByName(data: ISearchUserRequestDTO): Promise<User[]> {
+    const { name, limit, skip } = data
+
     const filteredUsers = this.users.filter((user) => user.name.includes(name))
     
     return filteredUsers

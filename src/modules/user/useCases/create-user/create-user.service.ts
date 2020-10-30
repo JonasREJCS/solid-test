@@ -1,12 +1,13 @@
-import { User } from "../../entities/User";
-import { IMailProvider } from "../../providers/IMailProvider";
-import { IUsersRepository } from "../../repositories/IUsersRepository.ts";
-import { ICreateUserRequestDTO } from "./CreateUserDTO";
+import { User } from "../../../entities/User";
+import { IFila } from "../../../shared/fila/IFila";
+import { IMailProvider } from "../../../providers/IMailProvider";
+import { IUsersRepository } from "../../../repositories/IUsersRepository.ts";
+import { ICreateUserRequestDTO } from "../dto/create-user.dto";
 
 export class CreateUserUseCase {
   constructor(
     private usersRepository: IUsersRepository,
-    private mailProvider: IMailProvider
+    private fila: IFila
   ){}
 
   async execute(data: ICreateUserRequestDTO){
@@ -20,6 +21,7 @@ export class CreateUserUseCase {
 
     await this.usersRepository.save(user);
 
+    await this.fila.enviarParaFila()
     // await this.mailProvider.sendMail({
     //     to: {
     //       name: data.name,

@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { createUserController } from "./useCases/CreateUser";
-import { searchUserController } from "./useCases/SearchUser";
+import { createUserController } from "../../../../useCases/search-user";
+import { searchUserController } from "../../../../useCases/search-user";
 
 const router = Router()
 

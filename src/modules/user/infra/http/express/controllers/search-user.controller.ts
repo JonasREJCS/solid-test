@@ -1,5 +1,5 @@
 import {Request, Response} from 'express'
-import { SearchUserUseCase } from './SearchUserUseCase';
+import { SearchUserUseCase } from '../../../../useCases/SearchUser/SearchUserUseCase';
 
 export class SearchUserController {
   constructor(
